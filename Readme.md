@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Павел Гришин](https://up.htmlacademy.ru/javascript/9/user/77437).
-* Наставник: `Неизвестно`.
+* Наставник: нет наставника.
 
 ---
 
