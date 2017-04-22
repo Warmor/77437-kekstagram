@@ -106,19 +106,19 @@ var isKeyPressed = function (evt, code) {
   return evt.keyCode === code;
 };
 
-var onKeyPressed = function(evt, code, callback) {
+var onKeyPressed = function (evt, code, callback) {
   if (isKeyPressed(evt, code)) {
     callback();
   }
 };
 
-var openGallery = function(number) {
+var openGallery = function (number) {
   makeMainPicture(photosArray, number);
   document.addEventListener('keydown', onEscPressGalleryOverlay);
   galleryOverlay.classList.remove('invisible');
 };
 
-var closeGallery = function(evt) {
+var closeGallery = function (evt) {
   document.removeEventListener('keydown', onEscPressGalleryOverlay);
   galleryOverlay.classList.add('invisible');
 };
@@ -126,18 +126,20 @@ var closeGallery = function(evt) {
 var onEscPressGalleryOverlay = function (evt) {
   onKeyPressed(evt, ESC_KEY_CODE, closeGallery);
 };
-var onClickGalleryOverlayClose = function() {
+var onClickGalleryOverlayClose = function () {
   closeGallery();
 };
-var onKeydownGalleryOverlayClose = function(evt) {
+var onKeydownGalleryOverlayClose = function (evt) {
   onKeyPressed(evt, ENTER_KEY_CODE, closeGallery);
 };
 
-var onClickPicturesContainer = function(evt) {
+var onClickPicturesContainer = function (evt) {
   evt.preventDefault();
   var target = event.target;
   var picture = target.closest('.picture');
-  if (!picture) { return;}
+  if (!picture) {
+    return;
+  }
   var number = picture.getAttribute('data-number');
   openGallery(number);
 };
@@ -151,39 +153,38 @@ var uploadForm = document.querySelector('#upload-select-image');
 var uploadFormFile = uploadForm.querySelector('#upload-file');
 var uploadOverlay = document.querySelector('.upload-overlay');
 var uploadOverlayDescription = uploadOverlay.querySelector('.upload-form-description');
-var uploadOverlayForm = uploadOverlay.querySelector('.upload-filter');
 var uploadOverlayCancel = uploadOverlay.querySelector('.upload-form-cancel');
 var uploadOverlaySubmit = uploadOverlay.querySelector('.upload-form-submit');
 
-var onEscPressUploadOverlay = function(evt) {
+var onEscPressUploadOverlay = function (evt) {
   onKeyPressed(evt, ESC_KEY_CODE, closeUploadOverlay);
 };
-var openUploadOverlay = function() {
+var openUploadOverlay = function () {
   uploadForm.classList.add('invisible');
   uploadOverlay.classList.remove('invisible');
   document.addEventListener('keydown', onEscPressUploadOverlay);
 };
 
-var closeUploadOverlay = function() {
+var closeUploadOverlay = function () {
   uploadForm.classList.remove('invisible');
   uploadOverlay.classList.add('invisible');
   document.removeEventListener('keydown', onEscPressUploadOverlay);
 };
 
-var onChangeUploadFile = function() {
+var onChangeUploadFile = function () {
   openUploadOverlay();
 };
 
 uploadFormFile.addEventListener('change', onChangeUploadFile);
-uploadOverlayCancel.addEventListener('click', function() {
+uploadOverlayCancel.addEventListener('click', function () {
   closeUploadOverlay();
 });
-uploadOverlaySubmit.addEventListener('click', function(evt) {
+uploadOverlaySubmit.addEventListener('click', function (evt) {
   evt.preventDefault();
   closeUploadOverlay();
 });
 
-uploadOverlayDescription.addEventListener('keydown', function(evt) {
+uploadOverlayDescription.addEventListener('keydown', function (evt) {
   if (isKeyPressed(evt, ESC_KEY_CODE)) {
     evt.stopPropagation();
   }
