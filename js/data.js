@@ -11,9 +11,9 @@ window.data = (function () {
   ];
 
   var photosSettings = {
-   'num': 25,
-   'minLikes': 15,
-   'maxLikes': 200
+    'num': 25,
+    'minLikes': 15,
+    'maxLikes': 200
   };
 
   var getPhotosUrlArray = function (num) {
@@ -23,11 +23,11 @@ window.data = (function () {
     }
     return urlArray;
   };
-  
+
   var getCommentsArray = function (comments) {
     var commentsArray = [];
-    var comment1 = utils.getRandomArrayElement(comments);
-    var comment2 = utils.getRandomArrayElement(comments);
+    var comment1 = window.utils.getRandomArrayElement(comments);
+    var comment2 = window.utils.getRandomArrayElement(comments);
     if (Math.random() > 0.5) {
       if (comment1 === comment2) {
         commentsArray.push(comment1);
@@ -39,14 +39,14 @@ window.data = (function () {
     }
     return commentsArray;
   };
-  
+
   var generatePhotoObjects = function (settings) {
     var photosArray = [];
     var urlArray = getPhotosUrlArray(settings.num);
     for (var i = 0; i < settings.num; i++) {
       photosArray.push({
         'url': urlArray[i],
-        'likes': utils.getRandomNumberFromRange(settings.minLikes, settings.maxLikes),
+        'likes': window.utils.getRandomNumberFromRange(settings.minLikes, settings.maxLikes),
         'comments': getCommentsArray(COMMENTS)
       });
     }

@@ -12,21 +12,21 @@
   var resizeControlsValue = uploadOverlay.querySelector('.upload-resize-controls-value');
   var resizeControlsInc = uploadOverlay.querySelector('.upload-resize-controls-button-inc');
   var resizeControlsDec = uploadOverlay.querySelector('.upload-resize-controls-button-dec');
-  
+
   var currentFilter;
-  
-  utils.showElement(uploadForm);
-  utils.hideElement(uploadOverlay);
-  
+
+  window.utils.showElement(uploadForm);
+  window.utils.hideElement(uploadOverlay);
+
   var onEscPress = function (evt) {
     if (window.utils.isEscPressed(evt)) {
       closeUploadOverlay();
     }
   };
-  
+
   var openUploadOverlay = function () {
-    utils.showElement(uploadOverlay);
-    utils.hideElement(uploadForm);
+    window.utils.showElement(uploadOverlay);
+    window.utils.hideElement(uploadForm);
     document.addEventListener('keydown', onEscPress);
   };
 
@@ -36,18 +36,18 @@
     setDefaultValue();
     document.removeEventListener('keydown', onEscPress);
   };
-  
+
   var onChangeUploadFile = function () {
     openUploadOverlay();
   };
-  
+
   var isValidate = function () {
     if (uploadOverlayDescription.value.length < 30 || uploadOverlayDescription.value.length > 100) {
       return false;
     }
     return true;
   };
-  
+
   var setDefaultValue = function (argument) {
     uploadOverlayDescription.style.outline = '';
     imagePreview.style.transform = '';
@@ -55,11 +55,11 @@
     filterControls.querySelector('#upload-filter-none').checked = true;
     addFilter('filter-none');
   };
-  
+
   var markInvalidField = function (element) {
     element.style.outline = '2px solid red';
   };
-  
+
   var addFilter = function (filter) {
     imagePreview.classList.remove(currentFilter);
     if (filter !== 'none') {
@@ -67,7 +67,7 @@
       currentFilter = filter;
     }
   };
-  
+
   var getCorrectSize = function (value) {
     if (value > 100) {
       return 100;
@@ -89,7 +89,7 @@
     resizeControlsValue.value = resizeValue + '%';
     imagePreview.style.transform = ['scale(', resizeValue / 100, ')'].join('');
   };
-  
+
   uploadFormFile.addEventListener('change', onChangeUploadFile);
 
   uploadOverlayForm.addEventListener('submit', function (evt) {
@@ -106,21 +106,21 @@
   });
 
   uploadOverlayDescription.addEventListener('keydown', function (evt) {
-    if (utils.isEscPressed(evt)) {
+    if (window.utils.isEscPressed(evt)) {
       evt.stopPropagation();
     }
   });
-  
+
   filterControls.addEventListener('click', function (evt) {
     if (evt.target.nodeName.toLowerCase() === 'input') {
       addFilter('filter-' + evt.target.value);
     }
   });
-  
+
   resizeControls.addEventListener('click', function (evt) {
     if (evt.target.nodeName.toLowerCase() === 'button') {
       resizeImage(evt);
     }
   });
-  
+
 })();

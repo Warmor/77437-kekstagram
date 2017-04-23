@@ -1,7 +1,7 @@
 'use strict';
 
 window.preview = function () {
-  
+
   var makeMainPicture = function (photos, number) {
     var galleryOverlay = document.querySelector('.gallery-overlay');
     galleryOverlay.querySelector('img').src = photos[number].url;

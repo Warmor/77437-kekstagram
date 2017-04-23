@@ -1,7 +1,7 @@
 'use strict';
 
 window.picture = function () {
-  
+
   var makeGalleryPicture = function (photo, template, i) {
     var photoElement = template.cloneNode(true);
     photoElement.querySelector('img').src = photo.url;
@@ -10,7 +10,7 @@ window.picture = function () {
     photoElement.querySelector('.picture').setAttribute('data-number', i);
     return photoElement;
   };
-  
+
   var makeFragment = function (photos, template) {
     var fragment = document.createDocumentFragment();
     for (var i = 0; i < photos.length; i++) {
@@ -18,15 +18,14 @@ window.picture = function () {
     }
     return fragment;
   };
-  
+
   var fillGallery = function (photos, wrap) {
     var template = document.querySelector('#picture-template').content;
     var fragment = makeFragment(photos, template);
     wrap.appendChild(fragment);
   };
-  
+
   return {
     fillGallery: fillGallery
   };
 }();
-
